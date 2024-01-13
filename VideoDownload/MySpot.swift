@@ -49,7 +49,7 @@ struct MySpot: View {
                     }
                     primarySegment(index: $primaryIndex)
                     SecondarySegemnt(index: $secondaryIndex)
-                    List(listContent) { videos in
+                    List($listContent) { videos in
                         VideoCell(cellData: videos)
                             .listRowSeparator(.hidden)
                     }

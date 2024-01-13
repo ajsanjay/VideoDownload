@@ -25,8 +25,9 @@
 		1807E9702B50128100F06827 /* VideoCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1807E96F2B50128100F06827 /* VideoCellViewModel.swift */; };
 		1807E9742B50189500F06827 /* ProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1807E9732B50189500F06827 /* ProgressBar.swift */; };
 		1807E9762B5018F800F06827 /* ProgrssBarModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1807E9752B5018F800F06827 /* ProgrssBarModel.swift */; };
-		1807E97C2B50209B00F06827 /* CommonData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1807E97B2B50209B00F06827 /* CommonData.swift */; };
 		1807E97E2B50F97F00F06827 /* Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1807E97D2B50F97F00F06827 /* Alerts.swift */; };
+		1807E9822B51BCBA00F06827 /* CommonData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1807E9812B51BCBA00F06827 /* CommonData.swift */; };
+		1807E9862B52390600F06827 /* VideoPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1807E9852B52390600F06827 /* VideoPlayerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,8 +50,9 @@
 		1807E96F2B50128100F06827 /* VideoCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCellViewModel.swift; sourceTree = "<group>"; };
 		1807E9732B50189500F06827 /* ProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBar.swift; sourceTree = "<group>"; };
 		1807E9752B5018F800F06827 /* ProgrssBarModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgrssBarModel.swift; sourceTree = "<group>"; };
-		1807E97B2B50209B00F06827 /* CommonData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonData.swift; sourceTree = "<group>"; };
 		1807E97D2B50F97F00F06827 /* Alerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alerts.swift; sourceTree = "<group>"; };
+		1807E9812B51BCBA00F06827 /* CommonData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonData.swift; sourceTree = "<group>"; };
+		1807E9852B52390600F06827 /* VideoPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +98,7 @@
 				1807E9612B4F699600F06827 /* primarySegment.swift */,
 				1807E9632B4FB46B00F06827 /* SecondarySegemnt.swift */,
 				1807E96D2B4FBFB400F06827 /* VideoCell.swift */,
+				1807E9852B52390600F06827 /* VideoPlayerView.swift */,
 				1807E9732B50189500F06827 /* ProgressBar.swift */,
 				1807E96F2B50128100F06827 /* VideoCellViewModel.swift */,
 				1807E94B2B4EB94300F06827 /* Assets.xcassets */,
@@ -141,8 +144,8 @@
 		1807E9782B50200E00F06827 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				1807E97B2B50209B00F06827 /* CommonData.swift */,
 				1807E97D2B50F97F00F06827 /* Alerts.swift */,
+				1807E9812B51BCBA00F06827 /* CommonData.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -218,6 +221,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				1807E9582B4EBAE300F06827 /* MySpot.swift in Sources */,
+				1807E9862B52390600F06827 /* VideoPlayerView.swift in Sources */,
+				1807E9822B51BCBA00F06827 /* CommonData.swift in Sources */,
 				1807E9662B4FB8CB00F06827 /* MySpotModel.swift in Sources */,
 				1807E9602B4EBC6D00F06827 /* Color+Extension.swift in Sources */,
 				1807E96C2B4FBF1100F06827 /* UIImage+Extension.swift in Sources */,
@@ -230,7 +235,6 @@
 				1807E95C2B4EBB5000F06827 /* Shop.swift in Sources */,
 				1807E9482B4EB94100F06827 /* VideoDownloadApp.swift in Sources */,
 				1807E9702B50128100F06827 /* VideoCellViewModel.swift in Sources */,
-				1807E97C2B50209B00F06827 /* CommonData.swift in Sources */,
 				1807E9622B4F699600F06827 /* primarySegment.swift in Sources */,
 				1807E9642B4FB46B00F06827 /* SecondarySegemnt.swift in Sources */,
 				1807E97E2B50F97F00F06827 /* Alerts.swift in Sources */,
