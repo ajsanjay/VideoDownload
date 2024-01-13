@@ -41,7 +41,7 @@ import SwiftUI
             print ("file error: \(error)")
         }
         DispatchQueue.main.async {
-            self.status = .Delete
+            self.status = .Download
             self.isDownloaded = true
             self.renameSavedFile()
         }

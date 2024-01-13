@@ -18,19 +18,14 @@ struct VideoCell: View {
             ZStack {
                 Image(uiImage: UIImage().createThumbnailOfVideoFromFileURL(videoURL: cellData.videoUrl)!)
                     .aspectRatio(contentMode: .fit)
-                if viewModel.isDownloaded {
+                if viewModel.isDownloaded || findFileExist(ids: cellData.id) {
                     NavigationLink("Play Video") {
                         VideoPlayerView(vidUrl: playVideoFile(ids: cellData.id))
                     }
-                    Button {
-                        print("play")
-                    } label: {
-                        Image(systemName: "play.fill")
-                            .aspectRatio(contentMode: .fit)
-                            .foregroundColor(.primaryColour)
-                    }
-                    .background(.white).opacity(0.2)
-                    .buttonStyle(BorderlessButtonStyle())
+                    Image(systemName: "play.fill")
+                        .aspectRatio(contentMode: .fit)
+                        .foregroundColor(.primaryColour)
+                        .background(.white).opacity(0.2)
                 }
             }
             .frame(width: 150, height: 130, alignment: .center)
@@ -47,24 +42,30 @@ struct VideoCell: View {
                 }
                 HStack {
                     Button {
-                        print("Selected button")
-                        switch viewModel.status {
-                        case .Download:
-                            viewModel.startDownloading(urlString: cellData.videoUrl, idVal: cellData.id)
-                            viewModel.status = .Stop
-                        case .Stop:
-                            viewModel.downloadTaskSession.cancel()
-                            viewModel.status = .Download
-                        case .Delete:
-                            viewModel.status = .Download
-                        case .none:
-                            viewModel.startDownloading(urlString: cellData.videoUrl, idVal: cellData.id)
-                            viewModel.status = .Stop
+                        if viewModel.isDownloaded || findFileExist(ids: cellData.id) {
+                            deletVideo(ids: cellData.id)
+                        } else {
+                            switch viewModel.status {
+                            case .Download:
+                                viewModel.startDownloading(urlString: cellData.videoUrl, idVal: cellData.id)
+                                viewModel.status = .Stop
+                            case .Stop:
+                                viewModel.downloadTaskSession.cancel()
+                                viewModel.status = .Download
+                            case .none:
+                                viewModel.startDownloading(urlString: cellData.videoUrl, idVal: cellData.id)
+                                viewModel.status = .Stop
+                            }
                         }
                     } label: {
                         HStack {
-                            Text(viewModel.status?.rawValue ?? "Download")
-                                .foregroundColor(.white)
+                            if viewModel.isDownloaded || findFileExist(ids: cellData.id) {
+                                Text("Delete")
+                                    .foregroundColor(.white)
+                            } else {
+                                Text(viewModel.status?.rawValue ?? "Download")
+                                    .foregroundColor(.white)
+                            }
                         }
                     }
                     .frame(width: 180, height: 45)
@@ -81,6 +82,38 @@ struct VideoCell: View {
         let documentsFolder = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
         let videoURL = documentsFolder.appendingPathComponent("\(ids)_file.mp4")
         return videoURL
+    }
+    
+    func findFileExist(ids: Int) -> Bool {
+        let documentsFolder = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as String
+        let url = NSURL(fileURLWithPath: documentsFolder)
+        if let pathComponent = url.appendingPathComponent("\(ids)_file.mp4") {
+            let filePath = pathComponent.path
+            let fileManager = FileManager.default
+            return fileManager.fileExists(atPath: filePath)
+        } else {
+            print("FILE PATH NOT AVAILABLE")
+            return false
+        }
+    }
+    
+    func deletVideo(ids: Int) {
+        let documentsFolder = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as String
+        let url = NSURL(fileURLWithPath: documentsFolder)
+        if let pathComponent = url.appendingPathComponent("\(ids)_file.mp4") {
+            let filePath = pathComponent.path
+            let fileManager = FileManager.default
+            do {
+                try fileManager.removeItem(atPath: filePath)
+                viewModel.isDownloaded = false
+            } catch {
+                print("Could not delete file, probably read-only filesystem")
+                viewModel.isDownloaded = true
+            }
+        } else {
+            print("FILE PATH NOT AVAILABLE")
+            viewModel.isDownloaded = true
+        }
     }
     
 }
